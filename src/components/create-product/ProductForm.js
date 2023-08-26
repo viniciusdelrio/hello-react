@@ -1,23 +1,48 @@
+import React, { useState } from 'react';
+
 function ProductForm() {
+    
+    let[userInput, updateUserInput] = useState({
+        pName: '',
+        pPrice: '',
+        pDescription: '',
+        pAvailable: '',
+        pImage: ''
+    });
 
     function nameInputHandler(event) {
-        console.log(event.target.value);
+        updateUserInput({
+            ...userInput,
+            pName: event.target.value,
+        });
     }
 
     function priceInputHandler(event) {
-        console.log(event.target.value);
+        updateUserInput({
+            ...userInput,
+            pPrice: event.target.value,
+        });
     }
 
     function descriptionInputHandler(event) {
-        console.log(event.target.value);
+        updateUserInput({
+            ...userInput,
+            pDescription: event.target.value,
+        });
     }
 
     function availabilityInputHandler(event) {
-        console.log(event.target.value);
+        updateUserInput({
+            ...userInput,
+            pAvailable: event.target.value,
+        });
     }
 
     function imageInputHandler(event) {
-        console.log(event.target.value);
+        updateUserInput({
+            ...userInput,
+            pImage: event.target.value,
+        });
     }
 
     return (

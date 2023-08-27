@@ -2,47 +2,55 @@ import React, { useState } from 'react';
 
 function ProductForm() {
     
-    let[userInput, updateUserInput] = useState({
-        pName: '',
-        pPrice: '',
-        pDescription: '',
-        pAvailable: '',
-        pImage: ''
-    });
+    // Used by Approach 1
+    let [pName, updateName] = useState('');
+    let [pPrice, updatePrice] = useState('');
+    let [pDescription, updateDescription] = useState('');
+    let [pAvailable, updateAvailability] = useState('');
+    let [pImageUrl, updateImageUrl] = useState('');
+
+    // // Used by Approach 2 & 3
+    // let[userInput, updateUserInput] = useState({
+    //     pName: '',
+    //     pPrice: '',
+    //     pDescription: '',
+    //     pAvailable: '',
+    //     pImage: ''
+    // });
 
     function nameInputHandler(event) {
-        updateUserInput({
-            ...userInput,
-            pName: event.target.value,
-        });
+        // Approach 1:
+        updateName(event.target.value);
+
+        // // Approach 2: Could have a bug because 'userInput' could not be in the latest state. But it works in major cases.
+        // updateUserInput({
+        //     ...userInput,
+        //     pPrice: event.target.value,
+        // });
+        
+        // // Apporach 3: This is the best when use an object state, because it guarantee that you have the latest state of an object
+        // updateUserInput((prevState) => {
+        //     return {
+        //         ...prevState,
+        //         pName: event.target.value
+        //     };
+        // });
     }
 
     function priceInputHandler(event) {
-        updateUserInput({
-            ...userInput,
-            pPrice: event.target.value,
-        });
+        updatePrice(event.target.value);
     }
 
     function descriptionInputHandler(event) {
-        updateUserInput({
-            ...userInput,
-            pDescription: event.target.value,
-        });
+        updateDescription(event.target.value);
     }
 
     function availabilityInputHandler(event) {
-        updateUserInput({
-            ...userInput,
-            pAvailable: event.target.value,
-        });
+        updateAvailability(event.target.checked);
     }
 
     function imageInputHandler(event) {
-        updateUserInput({
-            ...userInput,
-            pImage: event.target.value,
-        });
+        updateImageUrl(event.target.value);
     }
 
     return (

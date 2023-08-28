@@ -6,7 +6,7 @@ function ProductForm() {
     let [pName, updateName] = useState('');
     let [pPrice, updatePrice] = useState('');
     let [pDescription, updateDescription] = useState('');
-    let [pAvailable, updateAvailability] = useState('');
+    let [pAvailable, updateAvailability] = useState(false);
     let [pImageUrl, updateImageUrl] = useState('');
 
     // // Used by Approach 2 & 3
@@ -53,14 +53,34 @@ function ProductForm() {
         updateImageUrl(event.target.value);
     }
 
+    function createProductEventHandler(event) {
+        event.preventDefault();
+        
+        let product = {
+            pId: 1,
+            pName: pName,
+            desc: pDescription,
+            isAvailable: Boolean(pAvailable),
+            image: pImageUrl,
+            price: Number(pPrice)
+        };
+
+        updateName('');
+        updatePrice('');
+        updateDescription('');
+        updateAvailability(false);
+        updateImageUrl('');
+    }
+
     return (
-        <form className="row g-3">
+        <form className="row g-3" onSubmit={createProductEventHandler}>
             <div className="col-md-6">
                 <label for="name">Product Name</label>
                 <input type="text" 
                         className="form-control" 
                         id="name" 
                         placeholder="Product Name"
+                        value={pName}
                         onChange={nameInputHandler} />
             </div>
             <div className="col-md-6">
@@ -70,6 +90,7 @@ function ProductForm() {
                         className="form-control" 
                         id="price" 
                         placeholder="Product Price"
+                        value={pPrice}
                         onChange={priceInputHandler} />
             </div>
 
@@ -79,17 +100,18 @@ function ProductForm() {
                         className="form-control" 
                         id="description" 
                         placeholder="Product Description"
+                        value={pDescription}
                         onChange={descriptionInputHandler} />
             </div>
 
             <div className="form-check form-switch">
-                <input className="form-check-input" type="checkbox" role="switch" id="isAvailable" onChange={availabilityInputHandler} />
+                <input className="form-check-input" type="checkbox" role="switch" id="isAvailable" checked={pAvailable} onChange={availabilityInputHandler} />
                 <label className="form-check-label" for="isAvailable">Is product available in stock?</label>
             </div>
 
             <div className="form-group">
                 <label for="select-image">Select product image</label>
-                <input type="file" className="form-control" id="select-image" onChange={imageInputHandler} />
+                <input type="file" className="form-control" id="select-image" value={pImageUrl} onChange={imageInputHandler} />
             </div>
             
 

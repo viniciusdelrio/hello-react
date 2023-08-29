@@ -43,7 +43,10 @@ let products = [
     }
 ];
 
-function ProductList() {
+function ProductList(props) {
+
+    console.log(props.newProduct);
+
     return (
         <div className='row'>
             <div className='col-lg-8 mx-auto'>

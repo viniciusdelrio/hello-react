@@ -51,6 +51,7 @@ function App() {
     let [newProductList, updateProductList] = useState(products);
 
     function createProduct(product) {
+        product.pID = newProductList.length + 1;
         updateProductList([product, ...newProductList]);
     }
 

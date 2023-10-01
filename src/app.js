@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './app.css';
-import CreateProduct from './components/create-product/CreateProduct';
-import ProductList from './components/product-list/ProductList';
-import FilterProduct from './components/filter-product/FilterProduct';
+import CreateProduct from './Components/CreateProduct/CreateProduct';
+import ProductList from './Components/ProductList/ProductList';
+import FilterProduct from './Components/FilterProduct/FilterProduct';
 
 let products = [
     {
